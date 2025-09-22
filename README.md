@@ -98,7 +98,7 @@ INDUSTRIAL_ANOMALY_DETECTION/
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd INDUSTRIAL_ANOMALY_DETECTION
+   cd industrial-anomaly-detection
    ```
 
 2. **Create and activate virtual environment** (for example using conda)
@@ -133,7 +133,7 @@ INDUSTRIAL_ANOMALY_DETECTION/
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd INDUSTRIAL_ANOMALY_DETECTION
+   cd industrial-anomaly-detection
    ```
 
 2. **Setup environment variables**
@@ -166,28 +166,44 @@ The API will be available at:
 
 **Analyze CSV Data:**
 ```bash
-curl -X POST "http://localhost:8000/analyze" \
-     -H "Content-Type: multipart/form-data" \
-     -F "file=@your_data.csv"
+curl -X 'POST' \
+  'http://localhost:8000/analyze' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@TEP_API_test.csv;type=text/csv' \
+  -F 'simulation_run=' \
+  -F 'target_sample='
 ```
 
 **Response Format:**
 ```json
 {
   "prediction": 1,
-  "confidence": 0.9340,
+  "confidence": 1,
   "important_features": [
     {
       "variable_name": "xmeas_18",
       "description": "Stripper temperature",
-      "importance_score": 0.1250
+      "importance_score": 3.5541
+    },
+    {
+      "variable_name": "xmeas_16",
+      "description": "Stripper pressure",
+      "importance_score": 2.6435
+    },
+    {
+      "variable_name": "xmv_9",
+      "description": "Stripper steam valve",
+      "importance_score": 2.2002
     }
   ],
-  "explanation": "STATUS: ALERT\nISSUE: Stripper system malfunction detected\nROOT CAUSE: Temperature control system failure\nIMMEDIATE ACTION: Check stripper steam valve position\nMONITORING: Stripper temperature trends",
-  "timestamp": "2024-01-15T10:30:00",
-  "processing_time_ms": 245.67,
+  "explanation": "STATUS: ALERT\nISSUE: Stripper system malfunction detected\nROOT CAUSE: Stripper steam valve failure or loss of steam supply\nIMMEDIATE ACTION: Manually control stripper steam valve to maintain temperature and pressure setpoints\nMONITORING: Stripper temperature and pressure trends",
+  "timestamp": "2025-09-22T00:58:42.884972",
+  "model_version": "1.0",
+  "processing_time_ms": 1298.33,
+  "input_rows_count": 3,
   "simulation_run": 1,
-  "target_sample": 200
+  "target_sample": 363
 }
 ```
 
