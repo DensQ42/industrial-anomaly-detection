@@ -97,7 +97,7 @@ INDUSTRIAL_ANOMALY_DETECTION/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/DensQ42/industrial-anomaly-detection.git
    cd industrial-anomaly-detection
    ```
 
@@ -132,7 +132,7 @@ INDUSTRIAL_ANOMALY_DETECTION/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/DensQ42/industrial-anomaly-detection.git
    cd industrial-anomaly-detection
    ```
 
