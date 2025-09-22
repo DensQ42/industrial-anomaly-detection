@@ -10,10 +10,12 @@ This system analyzes Tennessee Eastman Process data to detect industrial anomali
 
 - **High-Performance Anomaly Detection**: XGBoost classifier achieving 97.4% F1-score
 - **Explainable AI**: SHAP-based feature importance with LLM-generated explanations
-- **Production-Ready API**: FastAPI-based REST service with comprehensive validation
-- **Docker Containerization**: complete containerized deployment solution
+- **Multi-Framework LLM Evaluation**: comparative analysis of local (Hugging Face) vs API-based (Anthropic) models
 - **Interactive Memory**: contextual analysis with conversation history
 - **Robust Error Handling**: graceful degradation and comprehensive logging
+- **Production-Ready API**: FastAPI-based REST service with comprehensive validation
+- **Docker Containerization**: complete containerized deployment solution
+
 
 ## Technical Architecture
 
@@ -30,6 +32,9 @@ This system analyzes Tennessee Eastman Process data to detect industrial anomali
    - LangChain framework for conversation management
    - Structured prompt engineering with few-shot learning
    - Conversation memory with context preservation
+   - Hugging Face Transformers evaluation (FLAN-T5 Base/Large models)
+   - LangChain ConversationBufferWindowMemory for context preservation
+   - Custom prompt templates with structured output parsing
 
 3. **API Service**
    - FastAPI framework with automatic OpenAPI documentation
@@ -247,10 +252,11 @@ Your CSV file must contain:
 - Selected XGBoost for optimal performance balance
 
 ### 3. LLM Integration
-- Experimented with local FLAN-T5 models (insufficient domain knowledge)
+- Experimented with local FLAN-T5 models (insufficient domain knowledge) with various prompt engineering techniques
 - Transitioned to Anthropic Claude 3 Haiku for superior explanation quality
 - Implemented structured prompt engineering with few-shot learning
 - SHAP integration for feature-level contribution analysis
+- Implemented conversation LangChain chains with memory management for contextual analysis
 
 ### 4. Production Pipeline
 - FastAPI-based REST API with comprehensive validation
