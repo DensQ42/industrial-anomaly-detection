@@ -1,0 +1,7 @@
+{
+    "Z-Score Detector": 0.865779201281153,
+    "Logistic Regression": 0.8741754044857996,
+    "Isolation Forest": 0.8968251255937938,
+    "Random Forest": 0.9701312522170983,
+    "XGBoost": 0.9720018499412999
+}

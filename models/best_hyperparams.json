@@ -1,0 +1,33 @@
+{
+    "Z-Score Detector": {
+        "threshold": 2.6319394918771994
+    },
+    "Logistic Regression": {
+        "C": 9.882806848440351
+    },
+    "Isolation Forest": {
+        "contamination": 0.3222089866819502,
+        "n_estimators": 100,
+        "max_samples": 0.9500938485703427,
+        "max_features": 0.6596328208664816
+    },
+    "Random Forest": {
+        "n_estimators": 500,
+        "criterion": "gini",
+        "max_depth": 49,
+        "min_samples_split": 7,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "bootstrap": false
+    },
+    "XGBoost": {
+        "n_estimators": 500,
+        "learning_rate": 0.04578013106717573,
+        "max_depth": 10,
+        "gamma": 0.2607718477905464,
+        "subsample": 0.9868421331271724,
+        "colsample_bytree": 0.9086197812227359,
+        "reg_alpha": 0.042159998980595866,
+        "reg_lambda": 0.0055019785325270765
+    }
+}
