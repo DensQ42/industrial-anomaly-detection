@@ -240,7 +240,7 @@ Your CSV file must contain:
 ## Methodology
 
 ### 1. Exploratory Data Analysis
-- Analyzed 55 features across different fault types
+- Analyzed 52 features across different fault types
 - Identified fault-specific variability patterns
 - Discovered critical timing insights for fault injection
 - Mutual information analysis revealed most informative features
