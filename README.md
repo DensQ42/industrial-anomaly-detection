@@ -130,13 +130,19 @@ INDUSTRIAL_ANOMALY_DETECTION/
 
 ### Option 2: Docker Deployment
 
-1. **Setup environment variables**
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd INDUSTRIAL_ANOMALY_DETECTION
+   ```
+
+2. **Setup environment variables**
    ```bash
    cp .env.example .env
    # Edit .env and add your Anthropic API key
    ```
 
-2. **Build and run with Docker Compose**
+3. **Build and run with Docker Compose**
    ```bash
    docker-compose up --build
    ```
