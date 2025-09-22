@@ -31,9 +31,8 @@ This system analyzes Tennessee Eastman Process data to detect industrial anomali
    - Anthropic Claude 3 Haiku for explanation generation
    - LangChain framework for conversation management
    - Structured prompt engineering with few-shot learning
-   - Conversation memory with context preservation
    - Hugging Face Transformers evaluation (FLAN-T5 Base/Large models)
-   - LangChain ConversationBufferWindowMemory for context preservation
+   - LangChain ConversationBufferWindowMemory for context preservation: last 3 responses are being saved to contextual memory
    - Custom prompt templates with structured output parsing
 
 3. **API Service**
@@ -223,19 +222,30 @@ Your CSV file must contain:
 
 ## Key Results
 
-### Model Performance
-- **XGBoost F1-Score**: 97.4%
-- **Precision**: 99.3% (minimal false alarms)
-- **Recall**: 95.6% (high fault detection rate)
-- **False Positive Rate**: 1.1% (down from 44.3% baseline)
-- **False Negative Rate**: 4.4% (down from 9.4% baseline)
+### Exploratory Data Analysis Insights
+- **Feature Selection**: Identified 15 most informative variables through mutual information analysis
+- **Temporal Analysis**: Discovered fault injection timing patterns
+  - Training data: faults introduced after timestep 20
+  - Testing data: faults introduced after timestep 160
+- **Data Quality**: Established that faulty simulations begin with normal operation periods
+- **Visualization Suite**: Created comprehensive analysis including variability heatmaps, correlation matrices, time series plots, and distribution comparisons across fault types
 
-### Technical Achievements
-- Comprehensive feature engineering with rolling statistics and lag features
-- SHAP-based explainability for transparent decision making
-- LLM integration** for operator-friendly explanations
-- Production-ready deployment with robust error handling
-- Memory-enabled analysis for contextual insights
+### Comprehensive ML Model Performance Comparison
+
+| Model | F1-Score | Recall | Precision | AUC |
+|-------|----------|--------|-----------|-----|
+| **XGBoost** | **0.974** | **0.955** | **0.993** | **0.984** |
+| Random Forest | 0.973 | 0.960 | 0.986 | 0.986 |
+| Isolation Forest | 0.866 | 0.899 | 0.834 | 0.923 |
+| Logistic Regression | 0.851 | 0.877 | 0.827 | 0.902 |
+| Z-Score Detector | 0.834 | 0.906 | 0.773 | 0.896 |
+
+**Key Insights:**
+- XGBoost optimal balance of precision/recall for industrial applications with 0.974 F1-score
+- Significant improvement over statistical baseline methods
+- High precision (99.3%) critical for minimizing false alarms in production
+- Low false positive rate: 1.1% (down from 44.3% baseline)
+- Low false negative rate: 4.4% (down from 9.4% baseline)
 
 ## Methodology
 
@@ -251,6 +261,14 @@ Your CSV file must contain:
 - Hyperparameter optimization
 - Selected XGBoost for optimal performance balance
 
+### 2. Feature Engineering & Modeling
+- Engineered 157 temporal features (in total) from original 52 (lag, rolling windows, differencing)
+- Used Optuna with up to 200 trials for complex models for hyperparameters optimization (8 hyperparameters optimized for XGBoost)
+- Z-Score detector selected as baseline method
+- 14% F1-score improvement over baseline (0.834→0.974) with XGBoost
+- XGBoost achieved comparable accuracy to Random Forest while training 5x faster
+
+
 ### 3. LLM Integration
 - Experimented with local FLAN-T5 models (insufficient domain knowledge) with various prompt engineering techniques
 - Transitioned to Anthropic Claude 3 Haiku for superior explanation quality
@@ -261,7 +279,6 @@ Your CSV file must contain:
 ### 4. Production Pipeline
 - FastAPI-based REST API with comprehensive validation
 - Docker containerization for consistent deployment
-- LangChain conversation memory for contextual analysis
 - Robust error handling with graceful degradation
 
 
@@ -275,8 +292,6 @@ Your CSV file must contain:
 ### Future Enhancements
 - Integration with live process data
 - MLflow integration for production monitoring
-
-
 
 
 ---
